@@ -69,8 +69,10 @@ class _ProfileState extends State<Profile> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      UpgradePromoCard(context,'99+','Video Uploads Left','Go','unlimited','with Gold',AppColors.goldColor),
-                      UpgradePromoCard(context,'0','Instant Previews','Get a','free','credit everyday with Gold',AppColors.boostColor),
+                      Expanded(child: UpgradePromoCard(context,'99+','Video Uploads','Go','unlimited','with Gold',AppColors.goldColor)),
+                    SizedBox(width: 15,),
+                      Expanded(child: UpgradePromoCard(context,'0','Instant Previews','Get','free','credit with gold.',AppColors.boostColor),
+                      )
                     ],
                   ),
                   SizedBox(height: 20),
@@ -115,8 +117,8 @@ class _ProfileState extends State<Profile> {
   Container UpgradePromoCard(BuildContext context,numCount,text1,text2,text3,text4,color) {
     return Container(
       decoration: BoxDecoration(color: AppColors.chipsShade,borderRadius: BorderRadius.circular(20)),
-      height: MediaQuery.of(context).size.height/3.5,
-      width: MediaQuery.of(context).size.width/2.5,
+      // height: MediaQuery.of(context).size.height/3.5,
+       width: MediaQuery.of(context).size.width/2.5,
       child: Padding(
         padding: const EdgeInsets.all(18.0),
         child: Column(

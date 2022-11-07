@@ -1,13 +1,23 @@
+import 'package:camera/camera.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:splash_screen_view/SplashScreenView.dart';
+import 'package:videotesting/features/Camera/screens/CameraScreen.dart';
 import 'package:videotesting/views/OnBoarding.dart';
+import 'package:videotesting/views/Videos.dart';
 
 import 'views/Dashboard.dart';
 
-void main() {
+Future<void> main()async {
   WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
+  await Firebase.initializeApp();
+  UserDataController controller = Get.put(UserDataController());
+
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -15,7 +25,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Camera App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

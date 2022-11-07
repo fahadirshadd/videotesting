@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:videotesting/widgets/custom_text.dart';
+
+import '../features/Camera/screens/CameraScreen.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -50,6 +53,7 @@ class _DashboardState extends State<Dashboard> {
                       children: [
                         CustomText(text: 'Peter Rick',color: Colors.white,fontSize: 30.0,fontWeight: FontWeight.bold,),
                         CircleAvatar(
+                          radius: 32,
                           backgroundImage: AssetImage('assets/images/profile.jpg'),
                         )
                       ],
@@ -62,29 +66,34 @@ class _DashboardState extends State<Dashboard> {
             ),
           ),
           SizedBox(height: 70,),
-          Container(
-            height: MediaQuery.of(context).size.height/5.5,
-            width: MediaQuery.of(context).size.width/2,
-            decoration: BoxDecoration(color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(20) ),
-              border: Border.all(width: 3,color: Colors.indigoAccent),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 0,
-                  blurRadius: 15,
-                  offset: Offset(0, 3), // changes position of shadow
-                ),
-              ],
-            ),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.camera_alt,color: Colors.indigo,size: 40,),
-                  SizedBox(height: 10,),
-                  CustomText(text: 'Record Video',color: Colors.indigo,fontWeight: FontWeight.bold,),
+          InkWell(
+            onTap: (){
+              Get.to(CameraScreen(),transition: Transition.rightToLeft);
+            },
+            child: Container(
+              height: MediaQuery.of(context).size.height/5.5,
+              width: MediaQuery.of(context).size.width/2,
+              decoration: BoxDecoration(color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(20) ),
+                border: Border.all(width: 3,color: Colors.indigoAccent),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 0,
+                    blurRadius: 15,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
                 ],
+              ),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.camera_alt,color: Colors.indigo,size: 40,),
+                    SizedBox(height: 10,),
+                    CustomText(text: 'Record Video',color: Colors.indigo,fontWeight: FontWeight.bold,),
+                  ],
+                ),
               ),
             ),
           ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart' as fba;
 
 import 'BottomNavigationBar.dart';
 
@@ -13,6 +14,33 @@ class OnBoardingPage extends StatefulWidget {
 
 class _OnBoardingPageState extends State<OnBoardingPage> {
   final introKey = GlobalKey<IntroductionScreenState>();
+  fba.FirebaseAuth auth = fba.FirebaseAuth.instance;
+
+  Future<bool> signInWithEmailAndPassword(String email, String password) async {
+    try {
+      fba.UserCredential result = await auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      if (result.user != null) {
+        print('User logged in');
+        return true;
+      } else {
+        print('User not logged in');
+        return false;
+      }
+    } catch (e) {
+      return false;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    signInTrigger();
+  }
+
+  Future<void> signInTrigger()async{
+    signInWithEmailAndPassword('admin@email.com','123456');
+  }
 
   void _onIntroEnd(context) {
     Navigator.of(context).push(
