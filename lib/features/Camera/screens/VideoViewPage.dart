@@ -51,7 +51,7 @@ class _VideoViewPageState extends State<VideoViewPage> {
       
       String downloadUrl = await ref.getDownloadURL();
       print("download url: $downloadUrl");
-      FirebaseFirestore.instance.collection('videos').doc('video').set({
+      FirebaseFirestore.instance.collection('videos').doc().set({
         "Video Title" : 'Video-$timeStamp',
         "url" : downloadUrl,
         "time": timeStamp,
